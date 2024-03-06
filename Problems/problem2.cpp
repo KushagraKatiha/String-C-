@@ -23,6 +23,28 @@ string sortString(string str){
     return str;
 }
 
+// Optimized way 
+string checkAnagram(string s, string t){
+
+    if(s.size() != t.size()) return "Not an anagram";
+
+    vector<int> freq(26, 0);
+
+    for(int i = 0; i < s.size(); i++){
+        freq[s[i] - 'a']++;
+        freq[t[i] - 'a']--;
+    }
+
+    for(int i = 0; i < 26; i++){
+        if(freq[i] != 0){
+            return "Not an anagram";
+        }
+    }
+    
+    return "Both are anagram";
+    
+}
+
 // Given two strings s and t, return true if t is an anagram of s, and false otherwise.
 int main(){
 
@@ -31,11 +53,13 @@ int main(){
     string t; 
     cout<<"Input string t: "; cin>>t;
 
-    if(sortString(s) == sortString(t)){
-        cout<<"Both are anagram of each other"<<endl;
-    }else{
-        cout<<"Not an anagram"<<endl;
-    }
+    // if(sortString(s) == sortString(t)){
+    //     cout<<"Both are anagram of each other"<<endl;
+    // }else{
+    //     cout<<"Not an anagram"<<endl;
+    // }
      
+    cout<<checkAnagram(s, t)<<endl;
+
     return 0;
 }
